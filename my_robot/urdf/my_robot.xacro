@@ -154,7 +154,7 @@
     <dynamics damping="1.0" friction="1.0"/>
   </joint>
 
-  <link name='camera'>
+  <link name='camera_link'>
     <pose>0 0 0 0 0 0</pose>
 
     <inertial>
@@ -184,8 +184,8 @@
   </link>
 
  <joint type="fixed" name="camera_joint">
-    <origin xyz="0.15 0 0.0" rpy="0 0 0"/>
-    <child link="camera"/>
+    <origin xyz="0.15 0 0.0" rpy="0 -0.1 0"/>
+    <child link="camera_link"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
   </joint>
@@ -226,8 +226,17 @@
     <axis xyz="0 1 0" rpy="0 0 0"/>
   </joint>
 
-<gazebo reference="camera">
+<gazebo reference="camera_link">
     <material>Gazebo/Red</material>
 </gazebo>
+
+  <joint name="camera_optical_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="-1.5707 0 -1.5707"/>
+    <parent link="camera_link"/>
+    <child link="camera_link_optical"/>
+  </joint>
+
+  <link name="camera_link_optical">
+  </link>
 </robot>
 
